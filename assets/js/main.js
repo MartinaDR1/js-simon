@@ -13,19 +13,24 @@ containerEl.append(element);
 
 //Aggiungo un eventListener al bottone
 btnEl.addEventListener('click', function(){
-    
+    //Elimino il bottone una volta cliccato
+    btnEl.style.display='none'
+
     //Genero i numeri casuali
     randomNum(100);
 
+    //Elimino i numeri dalla pagina dopo 30s
+    setTimeout(timer,30000)
+    
 
 })
 
 
 //----------Funzioni----------//
+const numbers= [];
 
 function randomNum (max,min=1){
    //Credo array vuoto dove inserirò i numeri
-   const numbers= [];
 
    //Ciclo per ottenere i numeri
    while (numbers.length< 5){
@@ -34,8 +39,18 @@ function randomNum (max,min=1){
         //Verifico che non escano più numeri uguali
         if (!numbers.includes(number)){
             numbers.push(number)
+
+            //Stampo gli elementi in pagina
+            element.innerHTML= numbers
         }
+
     }
     console.log(numbers);
     return numbers
+}
+
+function timer (){
+    //Elimino i numeri
+    //element.innerHTML= numbers
+    element.innerHTML='';
 }
