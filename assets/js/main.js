@@ -11,6 +11,9 @@ const btnEl = document.querySelector('button');
 const element = document.createElement('div');
 containerEl.append(element);
 
+//Credo array vuoto dove inserirò i numeri
+const numbers= [];
+
 //Aggiungo un eventListener al bottone
 btnEl.addEventListener('click', function(){
     //Elimino il bottone una volta cliccato
@@ -19,18 +22,16 @@ btnEl.addEventListener('click', function(){
     //Genero i numeri casuali
     randomNum(100);
 
-    //Elimino i numeri dalla pagina dopo 30s
-    setTimeout(timer,30000)
+    //Elimino i numeri dalla pagina dopo 30s 
+    setTimeout(timer,3000)//todo +0
     
 
 })
 
 
 //----------Funzioni----------//
-const numbers= [];
 
 function randomNum (max,min=1){
-   //Credo array vuoto dove inserirò i numeri
 
    //Ciclo per ottenere i numeri
    while (numbers.length< 5){
@@ -51,6 +52,30 @@ function randomNum (max,min=1){
 
 function timer (){
     //Elimino i numeri
-    //element.innerHTML= numbers
     element.innerHTML='';
+
+    //Inserisco l'input dove l'utente potrà inserire i numeri
+    const inputEl = document.createElement("input");
+    inputEl.type = "number";
+    inputEl.placeholder= 'inserisci i numeri'
+
+    //Inserisco il bottone per la verifica
+    const button = document.createElement("button");
+    button.textContent='Verifica'
+
+    //Inserisco l'input e il bottone all'interno della pagina
+    containerEl.appendChild(inputEl); 
+    containerEl.appendChild(button); 
+
+    //Aggiungo l'eventListener
+    button.addEventListener('click', function(){
+        console.log(inputEl.value);
+
+        if(!numbers.includes(Number(inputEl.value))){
+            console.log('Mi dispiace! Hai perso');
+        } else {
+            console.log('Complimenti! Hai vinto!');
+        }
+    })
+
 }
